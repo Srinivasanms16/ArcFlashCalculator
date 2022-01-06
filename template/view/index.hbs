@@ -1,0 +1,154 @@
+<html>
+    <head>
+    <title>Arc Flash Calculator</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js" ></script>
+     <script src="/js/popper.min.js" ></script>
+    <script src="/js/bootstrap.min.js" ></script>
+    </head>
+    <body>
+           <div class='container'>
+            <div class="row" style="min-height:100vh;" >
+            <div class="col-12 bg-light">
+            <div style="position: absolute;
+                top: 40%;
+                left: 40%;
+                margin: -25px 0 0 -25px; z-index:100;" id="spinner">
+                <div class="spinner-grow text-success" style="width:10vh;height:10vh"></div>
+                <div class="spinner-grow text-info" style="width:10vh;height:10vh"></div>
+                <div class="spinner-grow text-warning" style="width:10vh;height:10vh"></div>
+                <div class="spinner-grow text-success"  style="width:10vh;height:10vh" >
+            </div>
+            </div>
+            <h1 class="d-flex justify-content-center mt-3">Arc Flash Calculator</h1>
+            <form class="col-10 offset-1 mt-5" id="caldata">
+                <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="standard" class="col-form-label col-5">Standard:</label>
+                        <input type="text" readonly class="form-control col-5" id="standard" value="IEEE 1584-2018" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="UnitOfMeasure" class="col-form-label col-5">Unit of Measure:</label>
+                        <input type="text" readonly class="form-control col-5" id="UnitOfMeasure" value="Metric">
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="Voltage" class="col-form-label col-5">Voltage(KV):</label>
+                        <input type="number"  class="form-control col-5" id="Voltage" value="IEEE 1584-2018" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="FaultCurrent" class="col-form-label col-5">Fault Current(KA):</label>
+                        <input type="number"  class="form-control col-5" id="FaultCurrent" value="Metric">
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="ArchingTime" class="col-form-label col-5">Arching Time(ms):</label>
+                        <input type="number"  class="form-control col-5" id="ArchingTime" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="ArchingTimeForReduced" class="col-form-label col-5">Arching Time Reduced(ms):</label>
+                        <input type="number"  class="form-control col-5" id="ArchingTimeForReduced" value="">
+                    </div>
+                </div>
+                 <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="WorkingDistance" class="col-form-label col-5">Working Distance(mm):</label>
+                        <input type="number"  class="form-control col-5" id="WorkingDistance" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="EnclosureWidth" class="col-form-label col-5">Enclosure Width(mm):</label>
+                        <input type="number"  class="form-control col-5" id="EnclosureWidth" value="">
+                    </div>
+                </div>
+                 <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="EnclosureHeight" class="col-form-label col-5">Enclosure Height(mm):</label>
+                        <input type="number" class="form-control col-5" id="EnclosureHeight" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="EnclosureDepth" class="col-form-label col-5">Enclosure Depth(mm):</label>
+                        <input type="number"  class="form-control col-5" id="EnclosureDepth" value="">
+                    </div>
+                </div>
+                 <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="ElectrodeConfiguration" class="col-form-label col-5">Electrode Configuration</label>
+                        <input type="text" readonly class="form-control col-5" id="ElectrodeConfiguration" value="VCB" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="ConductorGap" class="col-form-label col-5">ConductorGap(mm):</label>
+                        <input type="number" class="form-control col-5" id="ConductorGap" value="">
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group row col-6 d-flex justify-content-center">
+                        <input type="button" class="btn btn-primary pl-5 pr-5" id="submit" value="Calculate">
+                    </div>
+                    <div class="form-group row col-6 d-flex justify-content-center">
+                        <input type="button" class="btn btn-danger pl-5 pr-5" id="Reset" 
+                        value="Reset">
+                    </div>
+                </div>
+            </form>
+            <div id="resultsummary" class="col-10 offset-1 mt-5 bg-white">
+                <h3 class="d-flex justify-content-center mb-2">Calculation Result</h3>
+            <form>
+                 <div class="form-row"> 
+                    <div class="form-group row col-6 d-flex justify-content-center">
+                       <h3>Normal Arcing Current</h3> 
+                    </div>
+                    <div class="form-group row col-6 d-flex justify-content-center">
+                       <h3>Reduced Arcing Current</h3>
+                    </div>
+                </div> 
+              <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="arccurrent" class="col-form-label col-5">Arcing current(KA):</label>
+                        <input type="text" readonly class="form-control col-5" id="arccurrent" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="reducedarccurrent" class="col-form-label col-5">Arcing current(KA):</label>
+                        <input  type="text" readonly class="form-control col-5" id="reducedarccurrent" value="">
+                    </div>
+                </div>
+              <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="incidentEnergy" class="col-form-label col-5">Incident energy(calperSquare):</label>
+                        <input type="text" readonly class="form-control col-5" id="incidentEnergy" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="reducedincidentEnergy" class="col-form-label col-5">Incident energy(calperSquare):</label>
+                        <input type="number" readonly class="form-control col-5" id="reducedincidentEnergy" value="">
+                    </div>
+                </div>
+              <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="arcflashboundary" class="col-form-label col-5">Arc flash boundary(mm):</label>
+                        <input type="text" readonly class="form-control col-5" id="arcflashboundary" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="reducedarcflashboundary" class="col-form-label col-5">Arc flash boundary(mm):</label>
+                        <input type="text" readonly class="form-control col-5" id="reducedarcflashboundary" value="">
+                    </div>
+                </div>
+              <div class="form-row"> 
+                    <div class="form-group row col-6">
+                        <label for="ppecategory" class="col-form-label col-5">PPE Category:</label>
+                        <input type="text" readonly class="form-control col-5" id="ppecategory" value="" >
+                    </div>
+                    <div class="form-group row col-6">
+                        <label for="reducedppecategory" class="col-form-label col-5">PPE Category:</label>
+                        <input type="text" readonly class="form-control col-5" id="reducedppecategory" value="">
+                    </div>
+                </div>
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            <script src="/js/client.js" ></script>
+    </body>
+</html>
+

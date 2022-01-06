@@ -1,0 +1,22 @@
+{
+  "name": "arc-flash",
+  "version": "1.0.0",
+  "description": "Its helps to calculate Arc Flash",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js --ext hbs,css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "jquery": "^3.5.1",
+    "mathjs": "^7.5.1",
+    "mongoose": "^5.10.11",
+    "path": "^0.12.7",
+    "popper.js": "^1.16.1"
+  }
+}
